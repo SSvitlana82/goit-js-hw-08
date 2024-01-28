@@ -14,7 +14,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 108px 156px;
+  padding: 24px 156px;
   gap: 24px;
   list-style: none;
 }
