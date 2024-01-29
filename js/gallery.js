@@ -66,9 +66,7 @@ const images = [
 
 const gallery = document.querySelector(".gallery");
 
-gallery.addEventListener("click", openImageClick);
-
-function showImage() {
+function showGallery() {
   const previewImage = images
     .map(({ preview, original, description }) => {
       return `
