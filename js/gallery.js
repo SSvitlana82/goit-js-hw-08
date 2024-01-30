@@ -86,3 +86,39 @@ function showGallery() {
   gallery.innerHTML = previewImage;
 }
 showGallery();
+
+gallery.addEventListener("click", onGalleryClick);
+function onGalleryClick(event) {
+  event.preventDefault();
+  if (event.target === event.currentTarget) return;
+  const originalGalleryItem = event.target.dataset.source;
+  const image = images.find((el) => el.original === originalGalleryItem);
+
+  showGalleryModal(image);
+}
+
+function showGalleryModal(image) {
+  const { original, description } = image;
+  const modal = basicLightbox.create(
+    `
+    <img src="${original}" alt="${description}" width="1112" height="640">
+  `,
+
+    {
+      onShow: () => {
+        document.addEventListener("keydown", closeGalleryModal);
+      },
+
+      onClose: () => {
+        document.removeEventListener("keydown", closeGalleryModal);
+      },
+    }
+  );
+
+  modal.show();
+  function closeGalleryModal(e) {
+    if (e.code === "Escape") {
+      modal.close();
+    }
+  }
+}
